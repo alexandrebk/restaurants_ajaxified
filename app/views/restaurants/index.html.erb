@@ -1,9 +1,23 @@
 <div class="container mt-3">
   <h1>Restaurants</h1>
+  <div class="flex-center my-4" data-controller="counter">
+    <div class="counter">
+      <span data-target="counter.count">
+        <%= @restaurant_count %>
+      </span>
+    </div>
+    <button class="btn btn-outline-secondary"
+            data-action="click->counter#refresh">
+      Refresh counter
+    </button>
 
+  </div>
   <ul>
     <% @restaurants.each do |restaurant| %>
-      <li><%= link_to restaurant.name, restaurant_path(restaurant) %></li>
+      <li>
+        <%= link_to restaurant.name, restaurant_path(restaurant) %>
+        <%= link_to "Delete", restaurant, method: :delete, remote: true, class: "btn btn-danger" %>
+      </li>
     <% end %>
   </ul>
 

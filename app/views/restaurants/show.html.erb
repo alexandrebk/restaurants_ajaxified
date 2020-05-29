@@ -4,7 +4,7 @@
     <%= pluralize(@restaurant.reviews.size, "review") %>
   </h2>
   <div class="mb-3">
-    <%= simple_form_for([ @restaurant, @review ]) do |f| %>
+    <%= simple_form_for([ @restaurant, @review ], remote: true) do |f| %>
       <%= f.input  :content, as: :text %>
       <%= f.button :submit, class: 'btn btn-primary' %>
     <% end %>
@@ -14,7 +14,7 @@
       Be the first to leave a review for <%= @restaurant.name %>
     <% else %>
       <% @restaurant.reviews.each do |review| %>
-        <p><%= review.content %></p>
+        <p id="review-<%= review.id %>"><%= review.content %></p>
       <% end %>
     <% end %>
   </div>
